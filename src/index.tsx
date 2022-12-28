@@ -1,15 +1,30 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
+import { BrowserRouter as Router } from 'react-router-dom';
 import App from './App';
+import { setupAxios } from './config/axios-config';
 import reportWebVitals from './reportWebVitals';
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
+const mockScope = process.env.REACT_APP_MOCK_SERVICE_SCOPE;
+const { worker } = require('./__mocks__/browser');
+worker.start({
+  onUnhandledRequest: 'bypass',
+  serviceWorker: {
+    options: {
+      scope: mockScope,
+    },
+  },
+});
+//Axios default settings and interceptors
+setupAxios();
+
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <React.StrictMode>
-    <App />
+    <Router>
+      <App />
+    </Router>
   </React.StrictMode>
 );
 
