@@ -1,0 +1,37 @@
+
+
+.grey-border-block{
+    background-color: $color-black-1;
+    height: 1px;
+}
+
+.btn-signup-social{
+    border: 1.5px solid #000;
+    transition: transform .15s cubic-bezier(.17,.67,.29,2.71) 0s;
+}
+
+.btn-signup-social:hover{
+    transform: scale(1.02);
+}
+
+.error {
+    position: absolute;
+    color: $color-red-1;
+    font-size: 12px;
+    top: 28%;
+    right: 5%;
+    transition: .3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    user-select: none;
+}
+
+.error.errorPass {
+    right: 12%;
+}
+
+.input-main-wrap.input-error:focus-within {
+    background: $color-red-1;
+}
+
+.bl-input:focus+.error {
+    transform: translateY(-35px);
+}

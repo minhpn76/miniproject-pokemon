@@ -1,0 +1,18 @@
+@import './Helpers/variables';
+@import './Helpers/mixins';
+@import './Helpers/animation';
+
+@import './Base/customize';
+@import './Components/button';
+
+@import './Pages/mainPage';
+@import './Pages/dashboard';
+@import './Pages/register&login';
+@import './Pages/phoneview';
+@import './Pages/link';
+@import './Pages/design';
+@import './Pages/stat';
+@import './Pages/modal';
+@import './Pages/tour';
+@import './Pages/listUser';
+@import './Pages/page404';
