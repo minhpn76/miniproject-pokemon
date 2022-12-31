@@ -1,8 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    "./src/**/*.{js,jsx,ts,tsx}",
-  ],
+  content: ['./src/**/*.{js,jsx,ts,tsx}'],
   presets: [],
   darkMode: 'media', // or 'class'
   theme: {
@@ -518,6 +516,7 @@ module.exports = {
       4: 'repeat(4, minmax(0, 1fr))',
       5: 'repeat(5, minmax(0, 1fr))',
       6: 'repeat(6, minmax(0, 1fr))',
+      '[auto,auto,1fr]': 'auto auto 1fr',
     },
     height: ({ theme }) => ({
       auto: 'auto',
@@ -953,4 +952,4 @@ module.exports = {
     'disabled',
   ],
   plugins: [],
-}
+};

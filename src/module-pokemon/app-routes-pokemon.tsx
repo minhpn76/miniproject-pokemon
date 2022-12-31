@@ -5,7 +5,7 @@ import { ROUTES } from './constants';
 
 const PokemonList = React.lazy(() => import('./pages/index'));
 const PokemonDetail = React.lazy(() => import('./pages/detail'));
-const MyBag = React.lazy(() => import('./pages/mybag'));
+const MyPokemon = React.lazy(() => import('./pages/my-pokemon'));
 
 export const getPokemonModuleRoutes = (): RouteObject[] => {
   return [
@@ -16,12 +16,12 @@ export const getPokemonModuleRoutes = (): RouteObject[] => {
           element: LazyLoad(<PokemonList />),
         },
         {
-          path: `${ROUTES.DETAIL}/:id`,
+          path: `${ROUTES.DETAIL}/:name`,
           element: LazyLoad(<PokemonDetail />),
         },
         {
-          path: `${ROUTES.MY_BAG}`,
-          element: LazyLoad(<MyBag />),
+          path: `${ROUTES.MY_POKEMON}`,
+          element: LazyLoad(<MyPokemon />),
         },
       ],
     },

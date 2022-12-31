@@ -1,2 +1,2 @@
-export { default as CardItem } from './CardItem';
+export { default as PokemonItem } from './PokemonItem';
 export { default as Introduction } from './Introduction';
