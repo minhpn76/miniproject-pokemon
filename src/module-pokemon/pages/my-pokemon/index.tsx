@@ -1,16 +1,21 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../redux/store';
 import { IMAGE_URL, ROUTES } from '../../constants';
-import { useNavigate } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import { NotFound } from '../../../components';
 import { releasePokemon } from '../../services/redux';
 import { useState } from 'react';
 import ModalConfirm from './components/ModalConfirm';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { useSearchParams } from 'react-router-dom';
 
 const MyPokemon = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const releasePokemonAllParam = searchParams.get('releaseAll');
 
   const [openModal, setOpenModal] = useState(false);
   const [pokemonRelease, setPokemonRelease] = useState<string>();
@@ -44,16 +49,18 @@ const MyPokemon = () => {
                         </th>
                         <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-left"></th>
                         <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-left"></th>
-                        {/* <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
-                          <button
-                            onClick={() => {
-                              setOpenModal(true);
-                            }}
-                            className="flex items-center justify-center border border-transparent rounded-md bg-rose-600 py-2 px-5 text-base font-medium text-white hover:bg-rose-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                          >
-                            Release All
-                          </button>
-                        </th> */}
+                        {releasePokemonAllParam && (
+                          <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                            <button
+                              onClick={() => {
+                                setOpenModal(true);
+                              }}
+                              className="flex items-center justify-center border border-transparent rounded-md bg-rose-600 py-2 px-5 text-base font-medium text-white hover:bg-rose-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                            >
+                              Release All
+                            </button>
+                          </th>
+                        )}
                       </tr>
                     </thead>
                     <tbody>
