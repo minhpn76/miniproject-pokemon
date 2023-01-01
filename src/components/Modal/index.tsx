@@ -12,7 +12,7 @@ const Modal = ({ children, openModal, onClose }: ModalProps) => {
 
   return (
     <Transition.Root show={openModal} as={Fragment}>
-      <Dialog as="div" className="relative z-10" initialFocus={cancelButtonRef} onClose={onClose}>
+      <Dialog as="div" className="relative z-50 cursor-pointer" initialFocus={cancelButtonRef} onClose={onClose}>
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"

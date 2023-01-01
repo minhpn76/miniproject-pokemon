@@ -63,7 +63,7 @@ const PokemonDetail = () => {
     setOpenModal(true);
     setCanCatchUp(false);
     setTimeout(() => {
-      const catchUp = false || Math.random() <= 0.5;
+      const catchUp = Math.random() <= 0.5;
       console.log('catchUp', catchUp);
       setPokeAdmin(catchUp ? imgPokeCatchSuccess : imgPokeCatchFail);
       setCanCatchUp(catchUp);
@@ -161,7 +161,6 @@ const PokemonDetail = () => {
         <ModalRename
           key={JSON.stringify(pokemonData)}
           openModal={openModalRename}
-          setOpenModal={setOpenModalRename}
           savePokemon={savePokemon}
           pokemonData={pokemonData}
         />

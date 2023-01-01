@@ -70,7 +70,7 @@ const pokemonSlice = createSlice({
     catchUpPokemon: (state, action: PayloadAction<PokemonResponse>) => {
       let temp = state.data.pokemonCaught || [];
       if (action.payload) {
-        temp.push(action.payload);
+        temp.unshift(action.payload);
       }
 
       state.data.pokemonCaught = temp;
