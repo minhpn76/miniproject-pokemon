@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import { catchUpPokemon, getDetailPokemon } from '../../services/redux';
@@ -6,12 +6,13 @@ import { RootState } from '../../../redux/store';
 import { ReduxStateType } from '../../../redux/types';
 import { formatUpperCaseFirstLetter } from '../../../helpers/utils';
 import { getEntitiesPokemonData } from '../../services';
-import { IMAGE_URL } from '../../constants';
+import { IMAGE_URL, ROUTES } from '../../constants';
 import ModalCatchup from './components/ModalCatchup';
 import imgPokeThrow from '../../images/poke-throw.gif';
 import imgPokeCatchStop from '../../images/poke-catch-stop.jpg';
 import ModalRename from './components/ModalRename';
 import { DataLoading } from '../../../components';
+import { NavLink } from 'react-router-dom';
 
 const PokemonDetail = () => {
   const { name: namePokemonParam } = useParams();
@@ -22,10 +23,20 @@ const PokemonDetail = () => {
   const [pokeAdmin, setPokeAdmin] = useState(imgPokeThrow);
   const [canCatchUp, setCanCatchUp] = useState(false);
 
-  const { pokemonData, isLoading } = useSelector((state: RootState) => ({
+  const { pokemonData, isLoading, pokemonCaught } = useSelector((state: RootState) => ({
     pokemonData: state.pokemon.data.pokemonData,
     isLoading: [ReduxStateType.LOADING, ReduxStateType.INIT].includes(state.pokemon.status),
+    pokemonCaught: state.pokemon.data.pokemonCaught,
   }));
+
+  const isOwner = useMemo(() => {
+    if (canCatchUp) {
+      return true;
+    }
+    if (pokemonCaught.length > 0) {
+      return pokemonCaught.some(i => i.generalInformation.name === pokemonData.generalInformation.name);
+    }
+  }, [canCatchUp, pokemonCaught, pokemonData]);
 
   const [openModalRename, setOpenModalRename] = useState<boolean>(false);
 
@@ -51,14 +62,9 @@ const PokemonDetail = () => {
     setCanCatchUp(false);
     setTimeout(() => {
       setPokeAdmin(imgPokeCatchStop);
-      // setCanCatchUp(Math.random() <= 0.5);
-      setCanCatchUp(true);
+      console.log('canCatchUp', Math.random() <= 0.5);
+      setCanCatchUp(Math.random() <= 0.5);
     }, 4000);
-  };
-
-  const resetState = () => {
-    setCanCatchUp(false);
-    setPokeAdmin(imgPokeThrow);
   };
 
   useEffect(() => {
@@ -70,14 +76,26 @@ const PokemonDetail = () => {
     }
   }, [canCatchUp]);
 
+  const resetState = () => {
+    setCanCatchUp(false);
+    setPokeAdmin(imgPokeThrow);
+  };
+
   return (
     <>
       <div className="bg-white py-24">
         <DataLoading isLoading={isLoading}>
           <div className="mx-auto grid max-w-2xl grid-cols-1 items-center gap-y-16 gap-x-8 px-4 sm:px-6 lg:max-w-7xl lg:grid-cols-2 lg:px-8">
             <div>
-              <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+              <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl relative">
                 {formatUpperCaseFirstLetter(pokemonData.generalInformation.name)}
+                {isOwner && (
+                  <NavLink to={`/${ROUTES.MY_POKEMON}`}>
+                    <span className="bg-yellow-100 text-white-800 text-sm font-medium mr-2 ml-2 px-2.5 py-0.5 rounded dark:bg-red-300 dark:text-white-900 absolute cursor-pointer">
+                      Owned
+                    </span>
+                  </NavLink>
+                )}
               </h2>
 
               <dl className="mt-16 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 sm:gap-y-16 lg:gap-x-8">
@@ -108,12 +126,14 @@ const PokemonDetail = () => {
                   </div>
                 </div>
               </div>
-              <button
-                onClick={handleCatchUp}
-                className="mt-10 w-2/4 flex items-center justify-center border border-transparent rounded-md bg-blue-2 py-3 px-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-              >
-                Catch Pokemon
-              </button>
+              {!isOwner && (
+                <button
+                  onClick={handleCatchUp}
+                  className="mt-10 w-2/4 flex items-center justify-center border border-transparent rounded-md bg-blue-2 py-3 px-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                >
+                  Catch Pokemon
+                </button>
+              )}
             </div>
           </div>
         </DataLoading>

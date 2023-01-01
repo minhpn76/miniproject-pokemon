@@ -4,10 +4,13 @@ import { makeAnimate } from '../../module-pokemon/services/redux';
 import { NavLink } from 'react-router-dom';
 import { ROUTES } from '../../module-pokemon/constants';
 import SearchInput from '../SearchInput';
+import { useSearchParameters } from '../../hooks';
 
 const Header = () => {
   const header = useRef<HTMLDivElement>(null);
   const dispatch = useDispatch();
+
+  const { handleSearchTextChange, searchText } = useSearchParameters();
 
   const handleScroll = (offset: any) => {
     if (offset > 10 || offset > 10) {
@@ -46,7 +49,7 @@ const Header = () => {
             >
               My Pokemon
             </NavLink>
-            <SearchInput />
+            {/* <SearchInput searchText={searchText} handleChangeText={handleSearchTextChange} /> */}
           </div>
         </div>
       </div>

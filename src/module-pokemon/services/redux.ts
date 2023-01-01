@@ -3,6 +3,7 @@ import { ReduxData, ReduxStateType } from '../../redux/types';
 
 import { RootState } from '../../redux/store';
 import { PaginableData, PokemonListRequest, PokemonListResponse, PokemonResponse } from '../types';
+import { stat } from 'fs';
 
 export interface State {
   isAnimate: boolean;
@@ -68,7 +69,6 @@ const pokemonSlice = createSlice({
     },
     catchUpPokemon: (state, action: PayloadAction<PokemonResponse>) => {
       let temp = state.data.pokemonCaught || [];
-      console.log('temp', temp);
       if (action.payload) {
         temp.push(action.payload);
       }
@@ -82,17 +82,11 @@ const pokemonSlice = createSlice({
     catchUpPokemonFail: state => {
       state.status = ReduxStateType.ERROR;
     },
-    getWatchMyBagStart: state => {
-      state.data.myBag = [];
-      state.status = ReduxStateType.LOADING;
-    },
-    getWatchMyBagSuccess: state => {
-      state.data.myBag = [];
-      state.status = ReduxStateType.SUCCESS;
-    },
-    getWatchMyBagFail: state => {
-      state.data.myBag = [];
-      state.status = ReduxStateType.ERROR;
+    releasePokemon: (state, action: PayloadAction<{ isAll?: boolean; name: string }>) => {
+      const { isAll, name } = action.payload;
+      let temp = state.data.pokemonCaught || [];
+
+      state.data.pokemonCaught = isAll ? [] : temp.filter(i => i.generalInformation.name !== name);
     },
   },
 });
@@ -106,6 +100,7 @@ export const {
   getDetailPokemonFail,
   getDetailPokemonSuccess,
   catchUpPokemon,
+  releasePokemon,
 } = pokemonSlice.actions;
 
 export const selectorPokemonList = (state: RootState) => state.pokemon.data;

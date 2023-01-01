@@ -1,4 +1,3 @@
-import { useEffect, useRef, useState } from 'react';
 import { IMAGE_URL } from '../../../constants';
 import imgPokeCatchStop from '../../../images/poke-catch-stop.jpg';
 import { PokemonResponse } from '../../../types';
@@ -23,14 +22,11 @@ const ModalCatchup = ({
   resetState,
 }: ModalCatchupProps) => {
   const onCloseCatchUp = () => {
-    !canCatchUp && setOpenModal(false);
+    if (!canCatchUp) {
+      setOpenModal(false);
+      resetState();
+    }
   };
-
-  // useEffect(() => {
-  //   if (canCatchUp === false) {
-  //     resetState();
-  //   }
-  // }, [canCatchUp]);
 
   return (
     <Modal openModal={openModal} onClose={onCloseCatchUp}>

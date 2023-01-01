@@ -1,8 +1,10 @@
-import { useSearchParameters } from '../../hooks';
+import { ChangeEvent } from 'react';
 
-const SearchInput = () => {
-  const { handleSearchTextChange } = useSearchParameters();
-
+interface SearchInputProps {
+  searchText: string;
+  handleChangeText: (event: ChangeEvent<HTMLInputElement>) => void;
+}
+const SearchInput = ({ searchText, handleChangeText }: SearchInputProps) => {
   return (
     <div className="relative w-full max-w-lg transform px-4 transition-all opacity-100 scale-100">
       <div
@@ -17,8 +19,9 @@ const SearchInput = () => {
             aria-label="Search components"
             id="headlessui-combobox-input-126"
             role="combobox"
+            value={searchText}
             type="text"
-            onChange={handleSearchTextChange}
+            onChange={handleChangeText}
           />
           <svg
             className="pointer-events-none absolute top-1 right-4 h-6 w-6 fill-slate-400"

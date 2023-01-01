@@ -23,7 +23,7 @@ const PokemonList = () => {
         search: debouncedSearchText,
       })
     );
-  }, [page, searchText]);
+  }, [page, debouncedSearchText]);
 
   const { listPokemonData, isLoading } = useSelector((state: RootState) => ({
     listPokemonData: state.pokemon.data.listPokemonData,
