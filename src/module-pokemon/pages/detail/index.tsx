@@ -9,10 +9,12 @@ import { getEntitiesPokemonData } from '../../services';
 import { IMAGE_URL, ROUTES } from '../../constants';
 import ModalCatchup from './components/ModalCatchup';
 import imgPokeThrow from '../../images/poke-throw.gif';
-import imgPokeCatchStop from '../../images/poke-catch-stop.jpg';
+import imgPokeCatchSuccess from '../../images/poke-catch-success.gif';
+import imgPokeCatchFail from '../../images/poke-catch-fail.gif';
 import ModalRename from './components/ModalRename';
 import { DataLoading } from '../../../components';
 import { NavLink } from 'react-router-dom';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const PokemonDetail = () => {
   const { name: namePokemonParam } = useParams();
@@ -61,9 +63,10 @@ const PokemonDetail = () => {
     setOpenModal(true);
     setCanCatchUp(false);
     setTimeout(() => {
-      setPokeAdmin(imgPokeCatchStop);
-      console.log('canCatchUp', Math.random() <= 0.5);
-      setCanCatchUp(Math.random() <= 0.5);
+      const catchUp = false || Math.random() <= 0.5;
+      console.log('catchUp', catchUp);
+      setPokeAdmin(catchUp ? imgPokeCatchSuccess : imgPokeCatchFail);
+      setCanCatchUp(catchUp);
     }, 4000);
   };
 
@@ -121,7 +124,10 @@ const PokemonDetail = () => {
                 <div className="p-2 border rounded-lg shadow-xl cursor-pointer bg-gradient-to-r from-amber-500 to-yellow-400 hover:from-green-500 hover:to-yellow-400 group">
                   <div className="h-full group-hover:scale-110 ease-in-out duration-200 flex items-center">
                     <div className="lazyload-wrapper flex">
-                      <img src={`${IMAGE_URL}/${pokemonData.id}.png`} alt={`${pokemonData.generalInformation.name}`} />
+                      <LazyLoadImage
+                        src={`${IMAGE_URL}/${pokemonData.id}.png`}
+                        alt={`${pokemonData.generalInformation.name}`}
+                      />
                     </div>
                   </div>
                 </div>

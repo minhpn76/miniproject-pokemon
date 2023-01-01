@@ -6,6 +6,7 @@ import { NotFound } from '../../../components';
 import { releasePokemon } from '../../services/redux';
 import { useState } from 'react';
 import ModalConfirm from './components/ModalConfirm';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const MyPokemon = () => {
   const navigate = useNavigate();
@@ -43,17 +44,16 @@ const MyPokemon = () => {
                         </th>
                         <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-left"></th>
                         <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-left"></th>
-                        <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                        {/* <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
                           <button
                             onClick={() => {
                               setOpenModal(true);
-                              // setPokemonRelease(item.generalInformation.name);
                             }}
                             className="flex items-center justify-center border border-transparent rounded-md bg-rose-600 py-2 px-5 text-base font-medium text-white hover:bg-rose-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                           >
                             Release All
                           </button>
-                        </th>
+                        </th> */}
                       </tr>
                     </thead>
                     <tbody>
@@ -66,7 +66,10 @@ const MyPokemon = () => {
                             onClick={() => navigateDetail(item.generalInformation.name)}
                           >
                             <div className="lazyload-wrapper flex">
-                              <img src={`${IMAGE_URL}/${item.id}.png`} alt={`${item.generalInformation.name}`} />
+                              <LazyLoadImage
+                                src={`${IMAGE_URL}/${item.id}.png`}
+                                alt={`${item.generalInformation.name}`}
+                              />
                             </div>
                           </td>
                           <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
