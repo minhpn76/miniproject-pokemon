@@ -63,7 +63,7 @@ const PokemonDetail = () => {
     setOpenModal(true);
     setCanCatchUp(false);
     setTimeout(() => {
-      const catchUp = Math.random() <= 0.5;
+      const catchUp = Math.random() < 0.5;
       console.log('catchUp', catchUp);
       setPokeAdmin(catchUp ? imgPokeCatchSuccess : imgPokeCatchFail);
       setCanCatchUp(catchUp);
