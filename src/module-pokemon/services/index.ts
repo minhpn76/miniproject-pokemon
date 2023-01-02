@@ -15,13 +15,13 @@ export const getEntitiesPokemonData = (pokemonData?: PokemonResponse) => {
   if (pokemonData.generalInformation.weight) {
     features.push({
       name: 'Weight',
-      description: pokemonData.generalInformation.weight,
+      description: `${pokemonData.generalInformation.weight} kg`,
     });
   }
   if (pokemonData.generalInformation.baseExp) {
     features.push({
       name: 'Height',
-      description: pokemonData.generalInformation.height,
+      description: `${pokemonData.generalInformation.height} m`,
     });
   }
   if (pokemonData.generalInformation.baseExp) {
