@@ -34,9 +34,9 @@ const PokemonList = () => {
     <>
       <Introduction />
       <div className="dark-space mx-auto p-0">
-        <div className="width_1300 mx-auto dark-space-black py-16 bg-blue-2 rounded-xl">
+        <div className="width_1300 mx-auto dark-space-black py-16 bg-blue-2 rounded-xl smS:py-4 smS:rounded-md">
           <DataLoading isLoading={isLoading}>
-            <div className="flex flex-col justify-center content-center lg:grid lg:grid-cols-3 lg:gap-8 lg:mx-20 mt-12 font-semibold">
+            <div className="flex flex-col justify-center content-center lg:grid lg:grid-cols-3 lg:gap-8 lg:mx-20 mt-12 font-semibold smS:grid-cols-1 smS:gap-6 smS:mt-4">
               {listPokemonData?.totalRecords ? (
                 <>
                   {listPokemonData?.data.map((item: PokemonListResponse) => (

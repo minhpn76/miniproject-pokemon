@@ -3,13 +3,7 @@ const Footer = () => {
     <div className="text-center pt-2 pb-5 duration-100 opacity-100">
       <div className="mx-auto mb-4 mt-24 w-full w-1100 ">
         <div className="flex justify-center">
-          <svg
-            width="1101"
-            height="8"
-            viewBox="0 0 1101 8"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
+          <svg width="1101" height="8" viewBox="0 0 1101 8" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g opacity="0.5">
               <path
                 d="M0 6.96948C5.68452 6.96948 8.57997 5.04827 11.1347 3.35318C13.4413 1.82239 15.2636 0.613239 19.1573 0.613239C23.0507 0.613239 24.8726 1.82239 27.1792 3.3529C29.7336 5.04827 32.629 6.96948 38.3135 6.96948C43.9977 6.96948 46.8927 5.04799 49.4471 3.3529C51.7533 1.82211 53.5748 0.613239 57.4678 0.613239C61.3616 0.613239 63.1834 1.82239 65.49 3.3529C68.0444 5.04827 70.9399 6.96948 76.6244 6.96948C82.3093 6.96948 85.2043 5.04827 87.7591 3.3529C90.0657 1.82239 91.888 0.613239 95.7813 0.613239C99.6755 0.613239 101.497 1.82239 103.804 3.3529C106.359 5.04827 109.254 6.96948 114.939 6.96948C120.624 6.96948 123.519 5.04827 126.074 3.3529C128.381 1.82239 130.203 0.613239 134.096 0.613239C137.991 0.613239 139.813 1.82239 142.121 3.35318C144.675 5.04827 147.571 6.96948 153.256 6.96948"
@@ -136,18 +130,15 @@ const Footer = () => {
             </defs>
           </svg>
         </div>
-        <div className="font-inter font-medium mt-8 text-right text-black">
-          © This page is made by{" "}
-          <a
-            href="https://github.com/minhpn76"
-            className="text-gradient"
-          >
+        <div className="font-medium mt-8 text-right text-black smS:px-[20px] smS:text-[20px]">
+          © This page is made by{' '}
+          <a href="https://github.com/minhpn76" className="text-gradient">
             Edward PN - minhpn76
-          </a>{" "}
+          </a>{' '}
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

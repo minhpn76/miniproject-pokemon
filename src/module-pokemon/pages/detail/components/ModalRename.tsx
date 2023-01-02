@@ -49,7 +49,7 @@ const ModalRename = ({ openModal, savePokemon, pokemonData }: ModalRenameProps) 
           type="button"
           disabled={!nameOwner}
           onClick={handleSavePokemon}
-          className="inline-flex w-full justify-center rounded-md border border-transparent bg-red-600 px-4 py-2 text-base font-medium text-white shadow-sm enabled:hover:bg-red-700 focus:outline-none focus:ring-2 sm:ml-3 sm:w-auto sm:text-sm disabled:opacity-75"
+          className="inline-flex w-full justify-center rounded-md border border-transparent bg-red-600 px-4 py-2 text-base font-medium text-white shadow-sm enabled:hover:bg-red-700 focus:outline-none focus:ring-2 sm:ml-3 sm:w-auto sm:text-sm disabled:opacity-75 smS:flex smS:m-auto smS:w-2/4"
         >
           OK
         </button>

@@ -35,6 +35,9 @@
     width: 1300px;
     border-radius: 12px;
     transition: all 0.75s ease;
+    @media only screen and (max-width: 600px) {
+      width: 100%;
+    }
   }
 
   .dark-space-in .dark-space-black {
@@ -90,4 +93,14 @@
 
 .text-color-blue-3 {
   color: $color-blue-3;
+}
+
+@media only screen and (max-width: 600px) {
+  .width_1300,
+  .width_840,
+  .width_760,
+  .w-760,
+  .w-1100 {
+    width: 100%;
+  }
 }
