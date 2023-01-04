@@ -104,16 +104,16 @@ const PokemonDetail = () => {
               <dl className="mt-16 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 sm:gap-y-16 lg:gap-x-8">
                 {pokemonInformation.map(feature => (
                   <div key={feature.name} className="border-t border-gray-200 pt-4">
-                    <dt className="font-medium text-gray-900">{feature.name}</dt>
-                    {feature.description && <dd className="mt-2 text-lg text-gray-500">{feature.description}</dd>}
+                    <div className="font-medium text-gray-900">{feature.name}</div>
+                    {feature.description && <div className="mt-2 text-lg text-gray-500">{feature.description}</div>}
                     {feature.tags && (
-                      <dt className={feature.name === 'Moves' ? '' : 'flex'}>
+                      <div className={feature.name === 'Moves' ? '' : 'flex'}>
                         {feature.tags.map((i, idx) => (
-                          <dd key={idx} className="mt-2 text-lg rounded-md bg-blue-2 text-white px-4 py-1 mr-3">
+                          <div key={idx} className="mt-2 text-lg rounded-md bg-blue-2 text-white px-4 py-1 mr-3">
                             {i}
-                          </dd>
+                          </div>
                         ))}
-                      </dt>
+                      </div>
                     )}
                   </div>
                 ))}

@@ -40,7 +40,7 @@ const PokemonList = () => {
               {listPokemonData?.totalRecords ? (
                 <>
                   {listPokemonData?.data.map((item: PokemonListResponse) => (
-                    <PokemonItem data={item} />
+                    <PokemonItem data={item} key={JSON.stringify(item)} />
                   ))}
                 </>
               ) : (
