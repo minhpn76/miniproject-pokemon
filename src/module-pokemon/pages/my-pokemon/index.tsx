@@ -8,6 +8,7 @@ import { useState } from 'react';
 import ModalConfirm from './components/ModalConfirm';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { useSearchParams } from 'react-router-dom';
+import { PokemonResponse } from 'src/module-pokemon/types';
 
 const MyPokemon = () => {
   const navigate = useNavigate();
@@ -77,7 +78,7 @@ const MyPokemon = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      {pokemonCaught.map((item, idx) => (
+                      {pokemonCaught.map((item: PokemonResponse, idx: number) => (
                         <tr className="border-b cursor-pointer" key={JSON.stringify(item)}>
                           <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{idx + 1}</td>
                           <td

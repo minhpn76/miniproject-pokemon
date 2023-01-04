@@ -15,6 +15,7 @@ import ModalRename from './components/ModalRename';
 import { DataLoading } from '../../../components';
 import { NavLink } from 'react-router-dom';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { PokemonResponse } from 'src/module-pokemon/types';
 
 const PokemonDetail = () => {
   const { name: namePokemonParam } = useParams();
@@ -36,7 +37,9 @@ const PokemonDetail = () => {
       return true;
     }
     if (pokemonCaught.length > 0) {
-      return pokemonCaught.some(i => i.generalInformation.name === pokemonData.generalInformation.name);
+      return pokemonCaught.some(
+        (i: PokemonResponse) => i.generalInformation.name === pokemonData.generalInformation.name
+      );
     }
   }, [canCatchUp, pokemonCaught, pokemonData]);
 

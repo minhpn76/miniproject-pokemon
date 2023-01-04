@@ -132,7 +132,7 @@ const Footer = () => {
         </div>
         <div className="font-medium mt-8 text-right text-black smS:px-[20px] smS:text-[20px]">
           © This page is made by{' '}
-          <a href="https://github.com/minhpn76" className="text-gradient">
+          <a href="https://github.com/minhpn76" target="_blank" className="text-gradient">
             Edward PN - minhpn76
           </a>{' '}
         </div>
